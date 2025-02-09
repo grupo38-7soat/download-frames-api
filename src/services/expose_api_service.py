@@ -4,6 +4,7 @@ from waitress import serve
 from flask_restx import Api
 
 from services.resources.api_dynamo import dynamo_ns
+from services.resources.api_s3 import s3_ns
 
 app = Flask(__name__)
 
@@ -21,5 +22,6 @@ class ApiService(object):
 
     def run(self):
         self.api.add_namespace(dynamo_ns)
+        self.api.add_namespace(s3_ns)
         logger.info('Serving on http://{}:{}'.format(self.HOST, self.PORT))
         serve(app, host=self.HOST, port=self.PORT)

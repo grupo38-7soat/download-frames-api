@@ -7,7 +7,7 @@ from repository.dynamo import DynamoRepository
 AWS_REGION = Config.get('awsRegion')
 DYNAMO_TABLE_NAME = Config.get('dynamoTableName')
 
-dynamo_ns = Namespace(name='download-frames', description='API para download de frames')
+dynamo_ns = Namespace(name='consult-frames-history', description='API para consultar historico da geracao de frames')
 
 parser = reqparse.RequestParser()
 parser.add_argument('user', type=str, required=True, help='Nome do Usuario')

@@ -1,3 +1,4 @@
+import os
 import boto3
 from loguru import logger
 from botocore.exceptions import ClientError
