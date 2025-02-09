@@ -1,3 +1,4 @@
+import os
 import boto3
 from io import BytesIO
 
@@ -19,8 +20,8 @@ parser.add_argument('s3_file_name', type=str, required=True, help='Nome do Arqui
 
 s3_client = boto3.client(
     "s3",
-    # aws_access_key_id=AWS_ACCESS_KEY,
-    # aws_secret_access_key=AWS_SECRET_KEY,
+    # aws_access_key_id=os.getenv('ACCESS_KEY'),
+    # aws_secret_access_key=os.getenv('SECRET_KEY')
     region_name=AWS_REGION
 )
 
