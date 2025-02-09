@@ -10,9 +10,9 @@ class DynamoRepository:
         self.region_name = region_name
         self.table_name = table_name
         self.dynamodb = boto3.resource('dynamodb',
-                                       region_name=self.region_name # ,
-                                       # aws_access_key_id=os.getenv('ACCESS_KEY'),
-                                       # aws_secret_access_key=os.getenv('SECRET_KEY')
+                                       region_name=self.region_name ,
+                                       aws_access_key_id=os.getenv('ACCESS_KEY'),
+                                       aws_secret_access_key=os.getenv('SECRET_KEY')
                                        )
         self.table = self.dynamodb.Table(self.table_name)
 
