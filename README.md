@@ -12,9 +12,11 @@ Swagger da aplicação:
 ![Logo da Aplicação](img/swagger.png)
 
 Exemplo de Busca de dados de um determinado cliente:
+
 ![Logo da Aplicação](img/rota de busca.png)
 
 Exemplo de Download de Frames:
+
 ![Logo da Aplicação](img/download de frames.png)
 
 ##  Executando a Aplicação
