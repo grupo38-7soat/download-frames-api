@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    image: donwload-frames-api
+    container_name: donwload-frames-api-container
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONUNBUFFERED=1
