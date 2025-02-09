@@ -59,9 +59,5 @@ sonar-scanner
 
 ##  Integração e Deploy
 Para realizar o deploy desta aplicação, foi utilizado  a integração do GitHub Actions, permitindo fazer o deploy diretamente na AWS, utilizando os arquivos Kubernetes presentes na pasta K8S. Para subir a imagem em ambiente produtivo, estamos utilizando o AWS ECR.
-Git Actions:
-![Logo da Aplicação](images/git_action.png)
 
-AWS ECR:
-![Logo da Aplicação](images/ecr.png)
 
