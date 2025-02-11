@@ -93,9 +93,9 @@ def decode_jwt(token: str):
         if user_id:
             return user_id
     except jwt.ExpiredSignatureError as e:
-        raise ValueError(f'Erro ao obter o token: {e}')
+        return {"Erro ao obter o token": str(e)}, 401
     except jwt.InvalidTokenError as e:
-        raise ValueError(f'Erro ao obter o token: {e}')
+        return {"Erro ao obter o token": str(e)}, 401
     except Exception as e:
-        raise ValueError(f'Erro ao obter o token: {e}')
+        return {"Erro ao obter o token": str(e)}, 401
 

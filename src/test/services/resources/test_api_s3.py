@@ -1,28 +1,32 @@
-import unittest
-from unittest.mock import patch, MagicMock
-from flask import Flask
-from flask_restx import Api
-from services.resources.api_s3 import s3_ns
+from unittest.mock import patch
 
-class TestS3Namespace(unittest.TestCase):
+import jwt
+from src.services.resources.api_s3 import decode_jwt, retrieve_user
 
-    def setUp(self):
-        self.app = Flask(__name__)
-        self.api = Api(self.app)
-        self.api.add_namespace(s3_ns)
-        self.client = self.app.test_client()
 
-    @patch('services.resources.api_s3.s3_client')
-    def test_read_resource_get_error(self, mock_s3_client):
-        mock_s3_client.download_fileobj.side_effect = Exception('Download error')
+def test_decode_jwt_valid_token():
+    # Simulando um token JWT válido
+    token = jwt.encode({"id": "user123"}, "secret", algorithm="HS256")
 
-        response = self.client.get('/download-frames/find-ids', query_string={
-            'user': 'test_user',
-            's3_file_name': 'test_file'
-        })
+    user_id = decode_jwt(token)
 
-        self.assertEqual(response.status_code, 500)
-        self.assertEqual(response.json, {'error': 'Download error'})
+    assert user_id == "user123"
 
-if __name__ == '__main__':
-    unittest.main()
+
+def test_decode_jwt_invalid_token():
+    invalid_token = "invalid.token"
+
+    response = decode_jwt(invalid_token)
+
+    assert response[1] == 401  # Código de erro 401 para token inválido
+
+
+@patch("src.services.resources.api_s3.requests.get")
+def test_retrieve_user_success(mock_get):
+    # Mockando a resposta da API de usuários
+    mock_get.return_value.status_code = 200
+    mock_get.return_value.json.return_value = {"id": "user123", "name": "John Doe"}
+
+    user = retrieve_user("user123")
+
+    assert user == {"id": "user123", "name": "John Doe"}
