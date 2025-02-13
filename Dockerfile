@@ -18,5 +18,6 @@ COPY . .
 # Exponha a porta que a aplicação irá rodar
 EXPOSE 3000
 
+
 # Comando para rodar a aplicação
 CMD ["python", "src/app.py"]
